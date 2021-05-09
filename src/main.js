@@ -6,23 +6,25 @@ import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 
-import Serie from './components/Serie.vue'
-import Pelicula from './components/Pelicula.vue'
-import Home from "./components/Home.vue";
-import Transferencia from "./components/Transferencia.vue";
-import Formulario from "./components/Formulario.vue";
+import Home from "./components/views/Home.vue";
+import Transferencia from "./components/views/Transferencia.vue";
+import Prestamo from "./components/views/Prestamo.vue";
+import Pagos from "./components/views/Pagos.vue";
+import Login from "./components/views/Login.vue";
 Vue.use(BootstrapVue)
 Vue.use(IconsPlugin)
 
 const routes = [
-  { path: "/series", component: Serie },
-  { path: "/peliculas", component: Pelicula },
   { path: "/home", component: Home },
   { path: "/transferencia", component: Transferencia },
-  { path: "/formulario", component: Formulario },
+  { path: "/prestamo", component: Prestamo },
+  { path: "/pagos", component: Pagos },
+  { path: "/login", component: Login },
 ];
+
 import Router from 'vue-router'
-Vue.use(Router) 
+Vue.use(Router)
+
 const router = new Router({
   routes,
   mode: 'hash'

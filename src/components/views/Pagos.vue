@@ -1,6 +1,6 @@
 <template>
   <div>
-      <h1>Series</h1>
+      <h1>Pagos</h1>
   </div>
 </template>
 

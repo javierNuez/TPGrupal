@@ -1,9 +1,5 @@
 <template>
-  <div>
-      <h1>Header</h1>
-      <hr>
-      <hr>
-  </div>
+  <h1> LOGIN</h1>
 </template>
 
 <script>
