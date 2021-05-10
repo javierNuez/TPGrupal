@@ -1,8 +1,6 @@
 <template>
   <div>
-      <h1>hola soy header</h1>
-      <hr>
-      <hr>
+      <h1>Tranferencia</h1>
   </div>
 </template>
 
@@ -10,9 +8,7 @@
 export default {
 
 }
-methods
 </script>
-
 
 <style>
 
