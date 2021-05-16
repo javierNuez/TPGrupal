@@ -18,10 +18,13 @@
 
 <script>
 import Header from "./components/commons/Header";
+
+
 export default {
   name: "App",
   components: {
     Header,
+    
   },
 };
 </script>
