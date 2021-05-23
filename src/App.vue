@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <Header />
+    <div>{{ userId }}</div>
     <b-col>
       <div id="menu">
         <router-link to="/home">Home</router-link>
@@ -9,9 +10,9 @@
         <router-link to="/tarjeta">Tarjeta</router-link>
         <router-link to="/prestamo">Prestamos</router-link>
         
-        <router-link to="/login">
-          <button>Log out</button>
-        </router-link>
+        <b-button variant="outline-primary" @click.prevent="onLogout()"
+          >Cerrar sesión</b-button
+        >
       </div>
     </b-col>
     <router-view></router-view>
@@ -26,6 +27,24 @@ export default {
   name: "App",
   components: {
     Header,
+  },
+  data: function() {
+    return {
+      userId: null,
+    };
+  },
+  methods: {
+    getUserCredentials: () => {
+      const userId = localStorage.getItem("userId");
+      if (!userId) return console.log("USER ID NOT FOUND ");
+    },
+    onLogout: function() {
+      localStorage.clear();
+      this.$router.push({ path: "/logout" });
+    },
+  },
+  beforeMount: function() {
+    this.getUserCredentials();
   },
 };
 </script>
@@ -52,5 +71,17 @@ export default {
 }
 #menu {
   padding-top: 8px;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
 }
 </style>
