@@ -6,7 +6,9 @@
         <router-link to="/home">Home</router-link>
         <router-link to="/transferencia">Transferencia</router-link>
         <router-link to="/pagos">Pagos</router-link>
-        <router-link to="/prestamo">Prestamo</router-link>
+        <router-link to="/tarjeta">Tarjeta</router-link>
+        <router-link to="/prestamo">Prestamos</router-link>
+        
         <router-link to="/login">
           <button>Log out</button>
         </router-link>
@@ -24,7 +26,6 @@ export default {
   name: "App",
   components: {
     Header,
-    
   },
 };
 </script>
