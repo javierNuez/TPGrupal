@@ -1,6 +1,11 @@
 <template>
     <div>
-      
+        <!--<div class="card border-info mb-3" style="max-width: 18rem;">
+          <div class="card-header">Header</div>
+          <div class="card-body text-info">
+          <h5 class="card-title">Info card title</h5>
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        </div>-->
       <h4>Cierre tarjeta: {{cierreTarjeta}}</h4>
         <h4>Monto disponible $ {{montoDisponible}}</h4>
         <h4>Gastos: $ {{gastosTarjeta}}</h4>
@@ -22,6 +27,7 @@
  
 </template>
 <script>
+
 export default {
   data() {
     return {
