@@ -2,19 +2,37 @@
   <div id="app">
     <Header />
     <div>{{ userId }}</div>
-    <b-col>
+    <div>
+      <b-navbar type="dark" variant="info">
+        <b-navbar-brand>MyBank</b-navbar-brand>
+
+        <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
+        <b-navbar-nav class="ml-auto">
+          <div id="menu">
+            <router-link to="/home"> Home </router-link>
+            <router-link to="/transferencia"> Transferencia </router-link>
+            <router-link to="/pagos"> Pagos </router-link>
+            <router-link to="/prestamo"> Prestamo </router-link>
+            <router-link to="/tarjeta"> Tarjeta </router-link>
+            <b-button variant="outline-primary" @click.prevent="onLogout()"
+              >Cerrar sesión</b-button
+            >
+          </div>
+        </b-navbar-nav>
+      </b-navbar>
+    </div>
+
+    <!-- <b-col>
       <div id="menu">
         <router-link to="/home">Home</router-link>
         <router-link to="/transferencia">Transferencia</router-link>
         <router-link to="/pagos">Pagos</router-link>
-        <router-link to="/tarjeta">Tarjeta</router-link>
-        <router-link to="/prestamo">Prestamos</router-link>
-        
+        <router-link to="/prestamo">Prestamo</router-link>
         <b-button variant="outline-primary" @click.prevent="onLogout()"
           >Cerrar sesión</b-button
         >
       </div>
-    </b-col>
+    </b-col> -->
     <router-view></router-view>
   </div>
 </template>
@@ -22,13 +40,12 @@
 <script>
 import Header from "./components/commons/Header";
 
-
 export default {
   name: "App",
   components: {
     Header,
   },
-  data: function() {
+  data: function () {
     return {
       userId: null,
     };
@@ -38,12 +55,12 @@ export default {
       const userId = localStorage.getItem("userId");
       if (!userId) return console.log("USER ID NOT FOUND ");
     },
-    onLogout: function() {
+    onLogout: function () {
       localStorage.clear();
       this.$router.push({ path: "/logout" });
     },
   },
-  beforeMount: function() {
+  beforeMount: function () {
     this.getUserCredentials();
   },
 };
@@ -56,7 +73,8 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  max-width: 1400px;
+  margin: auto;
 }
 
 #nav a {

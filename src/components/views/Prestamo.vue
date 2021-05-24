@@ -1,36 +1,58 @@
 <template>
-  <div>
-      <h1>Historial de prestamos</h1>
-      <Formulario :items=getAllItems()></Formulario>
+  <div class="prestamoslayout">
+    <h1>Historial de prestamos</h1>
+    <Formulario :items="getGridData()"></Formulario>
+    <Grilla
+      :data="getGridData()"
+      :columns="getGridColumns()"
+      :filterKey="getSearchQuery()"
+    ></Grilla>
   </div>
 </template>
 
 <script>
- import Formulario from '../commons/Formulario'
+import Formulario from "../commons/Formulario";
+import Grilla from "../commons/Grilla";
 export default {
-  data: function(){
+  data: function () {
     const itemsData = [
-       { fecha: '10-3-2020', Movimiento: 'Dickerson', Importe: 'Macdonald' },
-       { fecha: '20-3-2020', Movimiento: 'Dickerson', Importe: 'Macdonald' },
-       { fecha: '30-3-2020', Movimiento: 'Dickerson', Importe: 'Macdonald' },
-       { fecha: '40-3-2020', Movimiento: 'Dickerson', Importe: 'Macdonald' },
-       { fecha: '50-3-2020', Movimiento: 'Dickerson', Importe: 'Macdonald' }
-     ]
+      { fecha: "10-10-2020", Movimiento: "a", Importe: 0 },
+      { fecha: "20-6-2020", Movimiento: "d", Importe: 6546 },
+      { fecha: "30-5-2020", Movimiento: "c", Importe: 55 },
+      { fecha: "04-1-2020", Movimiento: "t", Importe: 10 },
+      { fecha: "10-2-2020", Movimiento: "k", Importe: 2 },
+    ];
     return {
-      items: itemsData
-    }
+      gridData: itemsData,
+      searchQuery: "",
+      gridColumns: ["fecha", "Movimiento", "Importe"],
+    };
   },
- components:{
-    Formulario
+  beforeCreate() {
+    // When the Component is ready fetch the JSON from the Server Backend
+    this.gridData = [];
+  },
+
+  components: {
+    Formulario,
+    Grilla,
   },
   methods: {
-    getAllItems: function () {
-      return this.items
-    }
-  }
-}
+    getGridData: function () {
+      return this.gridData;
+    },
+    getSearchQuery: function () {
+      return this.searchQuery;
+    },
+    getGridColumns: function () {
+      return this.gridColumns;
+    },
+  },
+};
 </script>
 
 <style>
-
+.prestamoslayout {
+  width: 100%;
+}
 </style>

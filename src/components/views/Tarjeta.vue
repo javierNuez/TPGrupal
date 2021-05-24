@@ -12,8 +12,8 @@
         
         <div id="miTarjeta">
 
-          <div><img class="chip" src="sim.png"></div>
-          <img class="visa" src="visa.jpg">
+          <div><img class="chip" src="../../assets/sim.png"></div>
+           <img class="visa" src="../../assets/visa.jpg"> 
           
           <div class="row">
             <div class="col-xs-6 text-right"><h5 id="nombreTit">{{nombreTitular}}</h5></div>
@@ -43,7 +43,7 @@ export default {
 </script>
 <style>
 #miTarjeta{
-  background-image: url("../../../public/tj.jpg");
+  background-image: url("../../assets/tj2.jpg");
   /*background-image: url("../../../public/tj2.jpg");*/
   margin:auto;
   margin-top: 20px;
