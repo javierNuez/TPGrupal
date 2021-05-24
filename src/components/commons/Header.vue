@@ -1,15 +1,12 @@
 <template>
   <div>
-      <h1>Header</h1>
+    <img src="../../assets/LogoBanco.jpg" width="272" />
   </div>
 </template>
 
 <script>
-export default {
-
-}
+export default {};
 </script>
 
 <style>
-
 </style>

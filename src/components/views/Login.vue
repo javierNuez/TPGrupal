@@ -1,7 +1,8 @@
 <template>
   <div class="container-login">
-    <h2 class="login-title">MyBank</h2>
+    <!-- <h2 class="login-title">MyBank</h2> -->
     <form @submit.prevent="onSubmit" class="formContainer">
+      <img src="../../assets/LogoBanco.jpg" width="272" />
       <h3>Iniciar sesión</h3>
       <div class="inputContainer">
         <label for="input-dni">Ingrese su identificador</label>
