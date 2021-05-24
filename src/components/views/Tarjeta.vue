@@ -1,86 +1,49 @@
 <template>
-    <div>
-        <!--<div class="card border-info mb-3" style="max-width: 18rem;">
-          <div class="card-header">Header</div>
-          <div class="card-body text-info">
-          <h5 class="card-title">Info card title</h5>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-        </div>-->
-      <h4>Cierre tarjeta: {{cierreTarjeta}}</h4>
-        <h4>Monto disponible $ {{montoDisponible}}</h4>
-        <h4>Gastos: $ {{gastosTarjeta}}</h4>
-        
-        <div id="miTarjeta">
-
-          <div><img class="chip" src="../../assets/sim.png"></div>
-           <img class="visa" src="../../assets/visa.jpg"> 
-          
-          <div class="row">
-            <div class="col-xs-6 text-right"><h5 id="nombreTit">{{nombreTitular}}</h5></div>
-            <div class="col-xs-6 text-center"><h6 id="vencTit">Ven: {{vencimientoTarjeta}}</h6></div>
-            <div class="col-xs-12 text-center"><h4 class="numTarjeta">{{numeroTarjeta}}</h4></div>
-          </div>
-          
-        </div>
-        
+  <div>
+    <TarjetaDetalle></TarjetaDetalle>
+    <TarjetaMovimientos :items="getGridData()"></TarjetaMovimientos>
     </div>
- 
 </template>
 <script>
+ 
+import TarjetaDetalle from "../commons/TarjetaDetalle";
+import TarjetaMovimientos from "../commons/TarjetaMovimientos";
 
 export default {
-  data() {
+  
+    data: function () {
+    const itemsData = [
+      { fecha: "10-10-2020", Movimiento: "a", Importe: 0 },
+      { fecha: "20-6-2020", Movimiento: "d", Importe: 6546 },
+      { fecha: "30-5-2020", Movimiento: "c", Importe: 55 },
+      { fecha: "04-1-2020", Movimiento: "t", Importe: 10 },
+      { fecha: "10-2-2020", Movimiento: "k", Importe: 2 },
+    ];
     return {
-      nombreTitular: "Juan J. Perez",
-      vencimientoTarjeta: "01/29",
-      cierreTarjeta: "05/07/2021",
-      montoDisponible: 144000,
-      gastosTarjeta: 3212,
-      numeroTarjeta: "2312 3213 2132",
-    };
+      gridData: itemsData,
+      searchQuery: "",
+      gridColumns: ["fecha", "Movimiento", "Importe"],
+    }
+  },
+  beforeCreate() {
+    // When the Component is ready fetch the JSON from the Server Backend
+    this.gridData = [];
+  },
+  components: {
+    TarjetaDetalle,
+    TarjetaMovimientos
+  },
+  methods: {
+    getGridData: function () {
+      return this.gridData;
+    },
+    getSearchQuery: function () {
+      return this.searchQuery;
+    },
+    getGridColumns: function () {
+      return this.gridColumns;
+    },
   },
 };
 </script>
-<style>
-#miTarjeta{
-  background-image: url("../../assets/tj2.jpg");
-  /*background-image: url("../../../public/tj2.jpg");*/
-  margin:auto;
-  margin-top: 20px;
-  background-color: rgb(10, 33, 56);
-  height: 230px;
-  width: 400px;
-  border-radius: 20px;
-}
-.chip{
-  margin-top: 50px;
-  float: left;
-  margin-left: 20px;
-  height: 25%;
-  width: 18%;
-  border-radius: 11px;
-}
-.visa{
-  float: right;
-  margin:15px;
-  height: 15%;
-  width: 14%;
-}
-#nombreTit{
-  color: rgb(196, 225, 250);
-  margin-top: 129px;
-  text-align:left;
-  text-shadow: 1px 1px rgb(10, 33, 56);
-}
-#vencTit{
-  color: rgb(196, 225, 250);
-  margin-top: 100px;
-  text-align: right;
-  text-shadow: 1px 1px rgb(10, 33, 56);
-}
-.numTarjeta{
-  color: rgb(196, 225, 250);
-  text-shadow: 1px 1px rgb(10, 33, 56);
 
-}
-</style>
