@@ -3,36 +3,25 @@
     <Header />
     <div>{{ userId }}</div>
     <div>
-      <b-navbar type="dark" variant="info">
-        <b-navbar-brand>MyBank</b-navbar-brand>
+      <b-navbar variant="info">
+        <!-- <b-navbar-brand>MyBank</b-navbar-brand>
 
-        <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
+        <b-navbar-toggle target="nav-collapse"></b-navbar-toggle> -->
         <b-navbar-nav class="ml-auto">
-          <div id="menu">
-            <router-link to="/home"> Home </router-link>
-            <router-link to="/transferencia"> Transferencia </router-link>
-            <router-link to="/pagos"> Pagos </router-link>
-            <router-link to="/prestamo"> Prestamo </router-link>
-            <router-link to="/tarjeta"> Tarjeta </router-link>
+          <div>
+            <router-link to="/home" class="menu"> Home </router-link>
+            <router-link to="/transferencia" class="menu"> Transferencia </router-link>
+            <router-link to="/pagos" class="menu"> Pagos </router-link>
+            <router-link to="/prestamo" class="menu"> Prestamo </router-link>
+            <router-link to="/tarjeta" class="menu"> Tarjeta </router-link>
             <b-button variant="outline-primary" @click.prevent="onLogout()"
-              >Cerrar sesión</b-button
+              class="menu">Cerrar sesión</b-button
             >
           </div>
         </b-navbar-nav>
       </b-navbar>
     </div>
 
-    <!-- <b-col>
-      <div id="menu">
-        <router-link to="/home">Home</router-link>
-        <router-link to="/transferencia">Transferencia</router-link>
-        <router-link to="/pagos">Pagos</router-link>
-        <router-link to="/prestamo">Prestamo</router-link>
-        <b-button variant="outline-primary" @click.prevent="onLogout()"
-          >Cerrar sesión</b-button
-        >
-      </div>
-    </b-col> -->
     <router-view></router-view>
   </div>
 </template>
@@ -76,19 +65,11 @@ export default {
   max-width: 1400px;
   margin: auto;
 }
-
-#nav a {
-  font-weight: negrita;
-  color: #96845f;
-}
-#nav a .router-link-exact-active {
-  color: #53a3d8;
-}
-#logo {
-  padding-top: 0 px;
-}
-#menu {
-  padding-top: 8px;
+.menu {
+  font-family:Candara;
+  font-weight: bold ;
+  color: rgb(245, 245, 220);
+  word-spacing: 0.45em;
 }
 
 /* Chrome, Safari, Edge, Opera */
