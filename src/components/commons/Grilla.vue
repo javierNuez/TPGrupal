@@ -110,14 +110,14 @@ export default {
 
 <style>
 table {
-  border: 2px solid #42b983;
+  border: 2px solid #1e94a3;
   border-radius: 3px;
   background-color: #fff;
   width: 100%;
 }
 
 th {
-  background-color: #42b983;
+  background-color: #1e94a3;
   color: rgba(255, 255, 255, 0.66);
   cursor: pointer;
   -webkit-user-select: none;

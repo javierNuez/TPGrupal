@@ -82,6 +82,7 @@ export default {
 
 }
 .fuente{
-  Color:#0d7fca;
+  Color:#12566b;
+  
 }
 </style>

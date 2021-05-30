@@ -18,6 +18,6 @@ export default {
 
 <style>
 .fuente{
-  Color:#0d7fca;
+  Color:#2182a0;
 }
 </style>
