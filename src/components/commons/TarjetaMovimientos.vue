@@ -1,5 +1,6 @@
 <template>
   <div>
+    <h2 class="fuente">Movimientos:</h2>
     <b-table striped hover :items="items"></b-table>
   </div>
 </template>
@@ -16,5 +17,7 @@ export default {
 </script>
 
 <style>
-
+.fuente{
+  Color:#0d7fca;
+}
 </style>

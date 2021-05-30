@@ -1,10 +1,10 @@
 <template>
 
     <div>
-        
-        <h4>Cierre tarjeta: {{cierreTarjeta}}</h4>
-        <h4>Monto disponible $ {{montoDisponible}}</h4>
-        <h4>Gastos: $ {{gastosTarjeta}}</h4>
+        <h2 class="fuente">Tarjeta de Crédito:</h2>
+        <h4 class="fuente">Cierre tarjeta: {{cierreTarjeta}}</h4>
+        <h4 class="fuente">Monto disponible $ {{montoDisponible}}</h4>
+        <h4 class="fuente">Gastos: $ {{gastosTarjeta}}</h4>
         
         <div id="miTarjeta">
 
@@ -80,5 +80,8 @@ export default {
   color: rgb(196, 225, 250);
   text-shadow: 1px 1px rgb(10, 33, 56);
 
+}
+.fuente{
+  Color:#0d7fca;
 }
 </style>
