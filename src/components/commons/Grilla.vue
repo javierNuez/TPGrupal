@@ -24,15 +24,6 @@
         </tr>
       </tbody>
     </table>
-
-    <div id="demo">
-      <demo-grid
-        :data="gridData"
-        :columns="gridColumns"
-        :filter-key="searchQuery"
-      >
-      </demo-grid>
-    </div>
   </div>
 </template>
 
@@ -52,6 +43,9 @@ export default {
     return {
       sortKey: "",
       sortOrders: sortOrders,
+      gridData: [],
+      gridColumns: [],
+      searchQuery: "",
     };
   },
   computed: {
