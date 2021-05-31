@@ -1,14 +1,5 @@
 import Vue from "vue";
 import App from "./App.vue";
-import Vuex from "vuex";
-
-Vue.use(Vuex);
-
-import { BootstrapVue, IconsPlugin } from "bootstrap-vue";
-
-import "bootstrap/dist/css/bootstrap.css";
-import "bootstrap-vue/dist/bootstrap-vue.css";
-
 import Home from "./components/views/Home.vue";
 import Transferencia from "./components/views/Transferencia.vue";
 import Prestamo from "./components/views/Prestamo.vue";
@@ -17,6 +8,12 @@ import Tarjeta from "./components/views/Tarjeta.vue";
 import Login from "./components/views/Login.vue";
 import PageNotFound from "./components/views/PageNotFound.vue";
 import { getLSItemData } from "./utils/localStorageHelper";
+import { BootstrapVue, IconsPlugin } from "bootstrap-vue";
+import store from "./store";
+
+import "bootstrap/dist/css/bootstrap.css";
+import "bootstrap-vue/dist/bootstrap-vue.css";
+
 Vue.use(BootstrapVue);
 Vue.use(IconsPlugin);
 
@@ -46,17 +43,6 @@ router.beforeEach((to, from, next) => {
 });
 
 Vue.config.productionTip = false;
-
-const store = new Vuex.Store({
-  state: {
-    counter: 0,
-  },
-  mutations: {
-    increment(state) {
-      state.counter++;
-    },
-  },
-});
 
 new Vue({
   router,
