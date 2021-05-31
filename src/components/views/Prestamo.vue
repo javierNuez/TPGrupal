@@ -1,8 +1,8 @@
 <template>
   <div class="prestamoslayout">
-    <h1>Historial de prestamos</h1>
-    <Formulario :items="getGridData()"></Formulario>
+    <!-- <Formulario :items="getGridData()"></Formulario> -->
     <Grilla
+      titulo="Historial de prestamos"
       :data="getGridData()"
       :columns="getGridColumns()"
       :filterKey="getSearchQuery()"
@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import Formulario from "../commons/Formulario";
+// import Formulario from "../commons/Formulario";
 import Grilla from "../commons/Grilla";
 export default {
   data: function () {
@@ -34,7 +34,7 @@ export default {
   },
 
   components: {
-    Formulario,
+    // Formulario,
     Grilla,
   },
   methods: {

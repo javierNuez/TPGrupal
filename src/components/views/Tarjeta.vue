@@ -1,17 +1,20 @@
 <template>
   <div>
     <TarjetaDetalle></TarjetaDetalle>
-    <TarjetaMovimientos :items="getGridData()"></TarjetaMovimientos>
-    </div>
+    <Grilla
+      titulo="Movimientos de tarjeta"
+      :data="getGridData()"
+      :columns="getGridColumns()"
+      :filterKey="getSearchQuery()"
+    ></Grilla>
+  </div>
 </template>
 <script>
- 
 import TarjetaDetalle from "../commons/TarjetaDetalle";
-import TarjetaMovimientos from "../commons/TarjetaMovimientos";
+import Grilla from "../commons/Grilla";
 
 export default {
-  
-    data: function () {
+  data: function () {
     const itemsData = [
       { fecha: "10-10-2020", Movimiento: "a", Importe: 0 },
       { fecha: "20-6-2020", Movimiento: "d", Importe: 6546 },
@@ -23,7 +26,7 @@ export default {
       gridData: itemsData,
       searchQuery: "",
       gridColumns: ["fecha", "Movimiento", "Importe"],
-    }
+    };
   },
   beforeCreate() {
     // When the Component is ready fetch the JSON from the Server Backend
@@ -31,7 +34,7 @@ export default {
   },
   components: {
     TarjetaDetalle,
-    TarjetaMovimientos
+    Grilla,
   },
   methods: {
     getGridData: function () {

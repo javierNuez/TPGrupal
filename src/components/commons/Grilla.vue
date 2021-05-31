@@ -1,5 +1,6 @@
 <template>
   <div>
+    <h3 v-if="titulo">{{titulo}} </h3>
     <table>
       <thead>
         <tr>
@@ -29,6 +30,7 @@
       <!-- <form id="search">
     Search <input name="query" v-model="searchQuery">
   </form> -->
+  
       <demo-grid
         :data="gridData"
         :columns="gridColumns"
@@ -42,6 +44,7 @@
 <script>
 export default {
   props: {
+    titulo: String,
     data: Array,
     columns: Array,
     filterKey: String,
