@@ -1,6 +1,5 @@
 <template>
   <div class="prestamoslayout">
-    <!-- <Formulario :items="getGridData()"></Formulario> -->
     <Grilla
       titulo="Historial de prestamos"
       :data="getGridData()"
@@ -11,10 +10,9 @@
 </template>
 
 <script>
-// import Formulario from "../commons/Formulario";
 import Grilla from "../commons/Grilla";
 export default {
-  data: function () {
+  data: function() {
     const itemsData = [
       { fecha: "10-10-2020", Movimiento: "a", Importe: 0 },
       { fecha: "20-6-2020", Movimiento: "d", Importe: 6546 },
@@ -29,22 +27,20 @@ export default {
     };
   },
   beforeCreate() {
-    // When the Component is ready fetch the JSON from the Server Backend
     this.gridData = [];
   },
 
   components: {
-    // Formulario,
     Grilla,
   },
   methods: {
-    getGridData: function () {
+    getGridData: function() {
       return this.gridData;
     },
-    getSearchQuery: function () {
+    getSearchQuery: function() {
       return this.searchQuery;
     },
-    getGridColumns: function () {
+    getGridColumns: function() {
       return this.gridColumns;
     },
   },

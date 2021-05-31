@@ -4,18 +4,20 @@
     <div>{{ userId }}</div>
     <div>
       <b-navbar variant="info">
-        <!-- <b-navbar-brand>MyBank</b-navbar-brand>
-
-        <b-navbar-toggle target="nav-collapse"></b-navbar-toggle> -->
         <b-navbar-nav class="ml-auto">
           <div>
             <router-link to="/home" class="menu"> Home </router-link>
-            <router-link to="/transferencia" class="menu"> Transferencia </router-link>
+            <router-link to="/transferencia" class="menu">
+              Transferencia
+            </router-link>
             <router-link to="/pagos" class="menu"> Pagos </router-link>
             <router-link to="/prestamo" class="menu"> Prestamo </router-link>
             <router-link to="/tarjeta" class="menu"> Tarjeta </router-link>
-            <b-button variant="outline-primary" @click.prevent="onLogout()"
-              class="menu">Cerrar sesión</b-button
+            <b-button
+              variant="outline-primary"
+              @click.prevent="onLogout()"
+              class="menu"
+              >Cerrar sesión</b-button
             >
           </div>
         </b-navbar-nav>
@@ -34,7 +36,7 @@ export default {
   components: {
     Header,
   },
-  data: function () {
+  data: function() {
     return {
       userId: null,
     };
@@ -44,12 +46,12 @@ export default {
       const userId = localStorage.getItem("userId");
       if (!userId) return console.log("USER ID NOT FOUND ");
     },
-    onLogout: function () {
+    onLogout: function() {
       localStorage.clear();
       this.$router.push({ path: "/logout" });
     },
   },
-  beforeMount: function () {
+  beforeMount: function() {
     this.getUserCredentials();
   },
 };
@@ -66,8 +68,8 @@ export default {
   margin: auto;
 }
 .menu {
-  font-family:Candara;
-  font-weight: bold ;
+  font-family: Candara;
+  font-weight: bold;
   color: rgb(245, 245, 220);
   word-spacing: 0.45em;
 }

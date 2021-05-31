@@ -1,8 +1,8 @@
 import Vue from "vue";
 import App from "./App.vue";
-import Vuex from 'vuex'
+import Vuex from "vuex";
 
-Vue.use(Vuex)
+Vue.use(Vuex);
 
 import { BootstrapVue, IconsPlugin } from "bootstrap-vue";
 
@@ -49,18 +49,17 @@ Vue.config.productionTip = false;
 
 const store = new Vuex.Store({
   state: {
-    counter: 0
+    counter: 0,
   },
   mutations: {
-    increment (state) {
-      state.counter++
-    }
-  }
-})
+    increment(state) {
+      state.counter++;
+    },
+  },
+});
 
 new Vue({
   router,
   render: (h) => h(App),
   store: store,
 }).$mount("#app");
-
