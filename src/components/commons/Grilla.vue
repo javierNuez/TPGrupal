@@ -45,7 +45,6 @@ export default {
       sortOrders: sortOrders,
       gridData: [],
       gridColumns: [],
-      searchQuery: "",
     };
   },
   computed: {

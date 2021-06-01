@@ -1,6 +1,5 @@
 <template>
   <div>
-    <h1>Home AC</h1>
     <div v-if="cuentas.length === 0 && !usuarioSinCuentas">
       Cargando datos...
     </div>

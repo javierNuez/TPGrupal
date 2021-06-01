@@ -4,7 +4,6 @@
       titulo="Historial de prestamos"
       :data="getGridData()"
       :columns="getGridColumns()"
-      :filterKey="getSearchQuery()"
     ></Grilla>
   </div>
 </template>
@@ -22,7 +21,6 @@ export default {
     ];
     return {
       gridData: itemsData,
-      searchQuery: "",
       gridColumns: ["fecha", "Movimiento", "Importe"],
     };
   },
@@ -36,9 +34,6 @@ export default {
   methods: {
     getGridData: function() {
       return this.gridData;
-    },
-    getSearchQuery: function() {
-      return this.searchQuery;
     },
     getGridColumns: function() {
       return this.gridColumns;
