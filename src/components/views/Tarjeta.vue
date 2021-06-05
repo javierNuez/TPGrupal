@@ -1,11 +1,16 @@
 <template>
-  <div>
-    <TarjetaDetalle></TarjetaDetalle>
-    <Grilla
-      titulo="Movimientos de tarjeta"
-      :data="getGridData()"
-      :columns="getGridColumns()"
-    ></Grilla>
+  <div class="row">
+    <div class="col">
+          <TarjetaDetalle></TarjetaDetalle>
+    </div>
+    <div class="col">
+          <Grilla
+              titulo="Movimientos de tarjeta"
+              :data="getGridData()"
+              :columns="getGridColumns()"
+          ></Grilla>
+    </div>
+    
   </div>
 </template>
 <script>
