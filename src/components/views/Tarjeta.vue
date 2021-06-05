@@ -3,7 +3,7 @@
     <div class="col">
           <TarjetaDetalle></TarjetaDetalle>
     </div>
-    <div class="col">
+    <div id="grilla" class="col">
           <Grilla
               titulo="Movimientos de tarjeta"
               :data="getGridData()"
@@ -48,3 +48,11 @@ export default {
   },
 };
 </script>
+<style>
+#grilla {
+  color: #12566b;
+  padding-left: 5%;
+  padding-right: 5%;
+  padding-top: 2%;
+}
+</style>

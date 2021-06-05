@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h3 v-if="titulo">{{ titulo }}</h3>
+    <h2 v-if="titulo">{{ titulo }}</h2>
     <table>
       <thead>
         <tr>
