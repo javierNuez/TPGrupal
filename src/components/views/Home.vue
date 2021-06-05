@@ -34,7 +34,7 @@
         <h3><a id="resulado" >Mi prestamo</a></h3>
       </div>
 
-      <!--<input type="button" name="calcular" value="Simular" onclick="mostrar_resultado();" />-->
+      <input type="button" name="calcular" value="Simular" onclick="#" />
     </form>
   </div>
   </div>
