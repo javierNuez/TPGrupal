@@ -1,34 +1,28 @@
 <template>
   <div class="row">
-    
-    <div v-if="cuentas.length === 0 && !usuarioSinCuentas">
-      Cargando datos...
-    </div>
-    <div v-if="usuarioSinCuentas">Usted no tiene cuentas</div>
-    <div>
-    <div class="row">
-        <div class="col-sm-8">
-          <div v-for="(cuenta, index) in cuentas" :key="index">
-            <div>
-              <Grilla
-                :titulo="cuenta.moneda"
-                :data="cuenta.movimientos"
-                :columns="grillaTitulos"
-              ></Grilla>
-            </div>
+    <b-col cols="12" xl="8">
+      <div v-if="cuentas.length === 0 && !usuarioSinCuentas">
+        Cargando datos...
+      </div>
+      <div v-if="usuarioSinCuentas">Usted no tiene cuentas</div>
+      <div v-for="(cuenta, index) in cuentas" :key="index">
+        <h3>Caja de ahorro en {{ cuenta.moneda }}</h3>
+        <div class="detalle-container">
+          <div class="cuenta-detalle">
+            Numero de cuenta: {{ cuenta.nroCuenta }}
+          </div>
+          <div class="cuenta-detalle">
+            Saldo actual: {{ cuenta.moneda === "pesos" ? "$ " : "u$s "
+            }}{{ cuenta.saldo }}
           </div>
         </div>
-        <div class="col-sm-4">
-          <div>
-          <Simulador></Simulador>
-          </div>
-        </div>
-    </div>
-    </div>
-      
+        <Grilla :data="cuenta.movimientos" :columns="grillaTitulos" />
+      </div>
+    </b-col>
+    <b-col cols="12" xl="4">
+      <Simulador />
+    </b-col>
   </div>
-  
-  
 </template>
 
 <script>
@@ -36,19 +30,11 @@ import axios from "axios";
 import Grilla from "../commons/Grilla";
 import Simulador from "../commons/Simulador";
 
-
 export default {
   props: {},
   data: function() {
     return {
-      grillaTitulos: [
-        "descripcion",
-        "destino",
-        "fecha",
-        "monto",
-        "origen",
-        "tipoMovimiento",
-      ],
+      grillaTitulos: ["descripcion", "destino", "fecha", "monto", "origen"],
       cuentas: [],
       usuarioSinCuentas: false,
     };
@@ -68,9 +54,14 @@ export default {
     Simulador,
   },
 };
-
 </script>
 
 <style>
-
+.cuenta-detalle {
+  font-weight: bold;
+}
+.detalle-container {
+  display: flex;
+  justify-content: space-between;
+}
 </style>
