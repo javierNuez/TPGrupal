@@ -15,7 +15,7 @@
         <div class="input-group-prepend">
             <span class="input-group-text" id="inputGroup-sizing-default">Cuotas</span>
         </div>
-            <input id="n2" type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" placeholder="Sus cuotas..">
+            <input id="n2" type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" placeholder="..">
     </div>
 		
 		<h4>Interés anual: 37%</h4>
