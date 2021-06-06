@@ -20,9 +20,9 @@
 		
 		<h4>Interés anual: 37%</h4>
 		<h4>Capital con intereses:</h4> 
-        <h4 id="monto">$<a id="salida">0,00</a></h4>
+        <h3 id="monto">$<a id="salida">0</a></h3>
 		<h4>Cuota promedio:</h4> 
-        <h4 id="cuotaFinal">$<a id="cuota">0,00</a></h4>
+        <h3 id="cuotaFinal">$<a id="cuota">0</a></h3>
 		
 		<button id="calcular" class="btn btn-light">Calcular</button>
     </div>
