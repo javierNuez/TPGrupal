@@ -10,19 +10,19 @@
             <input id="n1" type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" placeholder="Ingrese monto..">
     </div>
 		
-	<h4>Cuotas mensuales:</h4>
+	
     <div class="input-group mb-3">
         <div class="input-group-prepend">
-            <span class="input-group-text" id="inputGroup-sizing-default">$</span>
+            <span class="input-group-text" id="inputGroup-sizing-default">Cuotas</span>
         </div>
             <input id="n2" type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" placeholder="Sus cuotas..">
     </div>
 		
 		<h4>Interés anual: 37%</h4>
 		<h4>Capital con intereses:</h4> 
-        <h4>$<a id="salida"></a></h4>
+        <h4 id="monto">$<a id="salida">0,00</a></h4>
 		<h4>Cuota promedio:</h4> 
-        <h4>$<a id="cuota"></a></h4>
+        <h4 id="cuotaFinal">$<a id="cuota">0,00</a></h4>
 		
 		<button id="calcular" class="btn btn-light">Calcular</button>
     </div>
@@ -45,8 +45,8 @@ export default {
 	var cuotaConInteres = cuotaPura + interes;
 	var capital = cuotaConInteres * n2;
 	
-	document.querySelector('#salida').innerHTML = capital;
-	document.querySelector('#cuota').innerHTML = cuotaConInteres;
+	document.querySelector('#salida').innerHTML = parseInt(capital);
+	document.querySelector('#cuota').innerHTML = parseInt(cuotaConInteres);
     })
 }}
 </script>
@@ -60,5 +60,11 @@ export default {
   color: rgba(255, 255, 255, 0.66);
   border-radius: 5px;
   background: #1e94a3;
+}
+#monto{
+    color: #0af1f1;
+}
+#cuotaFinal{
+    color: #0ff02d;
 }
 </style>
