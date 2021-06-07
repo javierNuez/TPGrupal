@@ -1,11 +1,11 @@
 <template>
   <div class="row">
     <b-col cols="12" xl="8">
-      <div v-if="cuentas.length === 0 && !usuarioSinCuentas">
+      <div v-if="$store.getters.getCuentas.length === 0 && !usuarioSinCuentas">
         Cargando datos...
       </div>
       <div v-if="usuarioSinCuentas">Usted no tiene cuentas</div>
-      <div v-for="(cuenta, index) in cuentas" :key="index">
+      <div v-for="(cuenta, index) in $store.getters.getCuentas" :key="index">
         <h3>Caja de ahorro en {{ cuenta.moneda }}</h3>
         <div class="detalle-container">
           <div class="cuenta-detalle">
@@ -36,7 +36,7 @@ export default {
   data: function() {
     return {
       grillaTitulos: ["descripcion", "destino", "fecha", "monto", "origen"],
-      cuentas: [],
+      //cuentas: this.$store.getters.getCuentas,
       usuarioSinCuentas: false,
     };
   },
@@ -48,7 +48,7 @@ export default {
       .then((res) => {
         const datos = res.data;
         if (!datos.length) return (this.usuarioSinCuentas = true);
-        this.cuentas = datos;
+        this.$store.dispatch("setCuentas", datos);
       });
   },
   components: {

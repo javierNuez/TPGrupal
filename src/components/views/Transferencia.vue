@@ -1,102 +1,118 @@
-<template >
+<template>
   <div class="container-transferencia">
-      <h1>Transferencia</h1>
- <form  id="app"  @submit="realizarTransferencia()" method="post">
-
-  <p>
-    <label for="destinatario">Destinatario:</label>
-    <input
-      id="destinatario"
-      v-model="destinatario"
-      type="number"
-      name="destinatario"
-    >
-  </p>
-
- 
-
-  <p>
-    <label for="tipoCuenta">Tipo de cuenta:</label>
-    <select
-      id="cuenta"
-      v-model="cuenta"
-      name="cuenta"
-    >
-      <option>Cuenta Corriente</option>
-      <option>Cuenta de Ahorro</option>
-      
-    </select>
-  </p>
-
- <p>
-     <div class="input-group-prepend">
-            <span class="input-group-text" id="inputGroup-sizing-default">$</span>
-       
+    <h1>Transferencia</h1>
+    <div class="container-form">
+      <div>
+        <label for="destinatario">Destinatario:</label>
         <input
-         id="mont"
-         v-model="mont"
-         type="number"
-         name="mont"
-         min="0">
-     </div>
+          class="form-control"
+          id="destinatario"
+          v-model="destinatario"
+          type="text"
+          name="destinatario"
+        />
+      </div>
+      <div>
+        <label for="tipoCuenta">Tipo de cuenta:</label>
+        <b-form-select v-model="selected" :options="options" name="tipoCuenta">
+        </b-form-select>
+        <!-- <select id="cuenta" v-model="cuenta" name="cuenta">
+          <option>Cuenta Corriente</option>
+          <option>Cuenta de Ahorro</option>
+        </select> -->
+      </div>
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="inputGroup-sizing-default">$</span>
+        <input
+          id="mont"
+          class="form-control"
+          v-model="mont"
+          type="number"
+          name="mont"
+          min="0"
+        />
+      </div>
 
-  <p>
-    <input  type="submit" value="Realizar transferencia"
-    >
-  </p>
-
-</form>
+      <button class="btn btn-primary" @click="realizarTransferencia">
+        Realizar transferencia
+      </button>
+    </div>
   </div>
 </template>
 
-
 <script>
-import SimuladorVue from '../commons/Simulador.vue';
+import { getLSItemData } from "../../utils/localStorageHelper";
+import swal from "sweetalert";
+import axios from "axios";
+
 export default {
-
-
-
-
-  methods:{
-    realizarTransferencia: function (e) {
-      if (this.monto) {
-        
-        return true;
-      }
-
-     
-      e.preventDefault();
-    }
-  }
-}
-
-
+  data: function() {
+    return {
+      destinatario: "",
+      mont: 0,
+      selected: "caja ahorro en pesos",
+      options: ["caja ahorro en pesos", "caja ahorro en dolares"],
+    };
+  },
+  methods: {
+    realizarTransferencia: function() {
+      const monto = parseInt(document.getElementById("mont").value);
+      const cbu = document.getElementById("destinatario").value;
+      swal({
+        title: "¿Esta seguro que desea generar esta transferencia?",
+        text: `El monto es: $${monto} y se enviara a ${cbu}`,
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+      }).then(async () => {
+        const dni = getLSItemData("userId");
+        const body = {
+          monto,
+          nroCuentaDestino: cbu,
+          descripcion: "una transferencia",
+          nroCuenta: `${dni}-${
+            this.selected === "caja ahorro en pesos" ? "001" : "002"
+          }`,
+          dni,
+        };
+        const res = await axios.put(
+          "https://vuebank-api.herokuapp.com/accounts/transfer",
+          body
+        );
+        if (res.data) {
+          swal("La transferencia ha sido creada correctamente!", {
+            icon: "success",
+          });
+        }
+      });
+    },
+  },
+};
 </script>
 
 <style>
-.container-transferencia{
-     font-family: Helvetica, Arial, sans-serif;
-     background-color: rgb(35, 139, 250);
-    width: 450px;
-    margin-top: 45px;
-     margin-right: 5%;
-     margin-left: 30%;
-     color: rgba(255, 255, 255, 0.66);
-     border-radius: 5px;
-   
-  
+.container-transferencia {
+  font-family: Helvetica, Arial, sans-serif;
+  background-color: #17a2b8;
+  padding: 32px;
+  width: 450px;
+  height: 500px;
+  margin-top: 45px;
+  margin-right: 5%;
+  margin-left: 30%;
+  color: rgba(255, 255, 255, 0.66);
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
-.input-group-prepend{
-    margin-right: 5%;
-
+.container-form {
+  height: 70%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
-    
- 
-
-
-
+.input-group-prepend {
+  margin-right: 5%;
+}
 </style>
-
-  
-  
-

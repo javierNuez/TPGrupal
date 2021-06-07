@@ -63,7 +63,6 @@ export default {
     };
   },
   methods: {
-    crearPrestamo: function() {},
     preCrearPrestamo: function() {
       const monto = parseInt(document.getElementById("n1").value);
       const cuotas = parseInt(document.getElementById("n2").value);
