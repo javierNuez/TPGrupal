@@ -59,7 +59,7 @@ export default {
 
   methods:{
     realizarTransferencia: function (e) {
-      if (this.monto <) {
+      if (this.monto) {
         
         return true;
       }
