@@ -62,7 +62,11 @@ export default {
         { fecha: "04-1-2020", ServicioAbonado: "t", Importe: 10 },
         { fecha: "10-2-2020", ServicioAbonado: "k", Importe: 2 },
       ],
-      gridColumns: ["fecha", "ServicioAbonado", "Importe"],
+      gridColumns: [
+        { label: "Fecha", key: "fecha" },
+        { label: "Servicio", key: "ServicioAbonado" },
+        { label: "Importe", key: "Importe" },
+      ],
     };
   },
   beforeCreate() {

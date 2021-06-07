@@ -1,16 +1,15 @@
 <template>
   <div class="row">
     <div class="col">
-          <TarjetaDetalle></TarjetaDetalle>
+      <TarjetaDetalle></TarjetaDetalle>
     </div>
     <div id="grilla" class="col">
-          <Grilla
-              titulo="Movimientos de tarjeta"
-              :data="getGridData()"
-              :columns="getGridColumns()"
-          ></Grilla>
+      <Grilla
+        titulo="Movimientos de tarjeta"
+        :data="getGridData()"
+        :columns="getGridColumns()"
+      ></Grilla>
     </div>
-    
   </div>
 </template>
 <script>
@@ -28,7 +27,11 @@ export default {
     ];
     return {
       gridData: itemsData,
-      gridColumns: ["fecha", "Movimiento", "Importe"],
+      gridColumns: [
+        { label: "Fecha", key: "fecha" },
+        { label: "Movimiento", key: "Movimiento" },
+        { label: "Importe", key: "Importe" },
+      ],
     };
   },
   beforeCreate() {

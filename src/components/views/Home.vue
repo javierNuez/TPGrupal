@@ -35,7 +35,13 @@ export default {
   props: {},
   data: function() {
     return {
-      grillaTitulos: ["descripcion", "destino", "fecha", "monto", "origen"],
+      grillaTitulos: [
+        { label: "Descripcion", key: "descripcion" },
+        { label: "Destino", key: "destino" },
+        { label: "Fecha", key: "fecha" },
+        { label: "Monto", key: "monto" },
+        { label: "Origen", key: "origen" },
+      ],
       //cuentas: this.$store.getters.getCuentas,
       usuarioSinCuentas: false,
     };

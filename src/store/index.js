@@ -5,34 +5,31 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    //counter: 0,
     cuentas: [],
+    prestamos: [],
   },
   actions: {
-    /* increment(context) {
-      context.commit("increment");
-    },
-    decrement(context) {
-      context.commit("decrement");
-    }, */
     setCuentas({ commit }, payload) {
       commit("setCuentas", payload);
+    },
+    setPrestamos({ commit }, payload) {
+      commit("setPrestamos", payload);
     },
   },
   mutations: {
     setCuentas(state, payload) {
       state.cuentas = payload;
     },
-    /* decrement(state) {
-      state.counter--;
-    }, */
+    setPrestamos(state, payload) {
+      state.prestamos = payload;
+    },
   },
   getters: {
-    /* getCounter: (state) => {
-      return state.counter;
-    }, */
     getCuentas: (state) => {
       return state.cuentas;
+    },
+    getPrestamos: (state) => {
+      return state.prestamos;
     },
   },
 });

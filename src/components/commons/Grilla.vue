@@ -5,21 +5,24 @@
       <thead>
         <tr>
           <th
-            v-for="(key, h) in columns"
+            v-for="(header, h) in columns"
             :key="h"
-            @click="sortBy(key)"
-            :class="{ active: sortKey == key }"
+            @click="sortBy(header.key)"
+            :class="{ active: sortKey == header.key }"
           >
-            {{ key | capitalize }}
-            <span class="arrow" :class="sortOrders[key] > 0 ? 'asc' : 'dsc'">
+            {{ header.label }}
+            <span
+              class="arrow"
+              :class="sortOrders[header.key] > 0 ? 'asc' : 'dsc'"
+            >
             </span>
           </th>
         </tr>
       </thead>
       <tbody>
         <tr v-for="(entry, i) in filteredData" :key="i">
-          <td v-for="(key, u) in columns" :key="u">
-            {{ entry[key] }}
+          <td v-for="(header, u) in columns" :key="u">
+            {{ entry[header.key] }}
           </td>
         </tr>
       </tbody>
