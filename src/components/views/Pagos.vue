@@ -7,12 +7,11 @@
         :data="getGridData()"
         :columns="getGridColumns()"
       ></Grilla>
-      <br />
     </div>
-    <div class="container">
+    <div id ="formulario" class="container" >
       <div class="row">
         <div class="col align-self-start">
-          <h3>Realizar nuevo pago</h3>
+          <h4>Realizar nuevo pago</h4>
           <label for="Servicio">Tipo de gasto</label>
           <b-form-select
             v-model="selected"
@@ -32,9 +31,8 @@
               ></b-form-input>
             </div>
           </div>
-          <b-button
-            style="margin: 10px"
-            variant="outline-primary"
+          <b-button id="pagar"
+          class="btn btn-light"
             value="Pagar"
             type="submit"
             >PAGAR</b-button
@@ -109,4 +107,18 @@ label {
   display: block;
   margin: 0.5em 0 0 0;
 }
+#formulario{
+  width: 450px;
+  margin-top: 45px;
+  margin-right: 5%;
+  margin-left: 5%;
+  color: rgba(255, 255, 255, 0.66);
+  border-radius: 5px;
+  background: #1e94a3;
+
+}
+#pagar{
+  margin: 10px;
+}
+
 </style>
