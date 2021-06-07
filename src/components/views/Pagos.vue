@@ -11,7 +11,7 @@
     <div id ="formulario" class="container" >
       <div class="row">
         <div class="col align-self-start">
-          <h4>Realizar nuevo pago</h4>
+          <div class="card-header"><h3>Agregar nuevo pago</h3></div>
           <label for="Servicio">Tipo de gasto</label>
           <b-form-select
             v-model="selected"
