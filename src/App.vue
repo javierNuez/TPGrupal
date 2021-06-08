@@ -13,7 +13,8 @@
             <router-link to="/pagos" class="menu"> Pagos </router-link>
             <router-link to="/prestamo" class="menu"> Prestamo </router-link>
             <router-link to="/tarjeta" class="menu"> Tarjeta </router-link>
-            <b-button style = "color:white"
+            <b-button
+              style="color:white"
               variant="outline-primary"
               @click.prevent="onLogout()"
               class="menu"
@@ -30,6 +31,8 @@
 
 <script>
 import Header from "./components/commons/Header";
+import axios from "axios";
+import { getLSItemData } from "./utils/localStorageHelper";
 
 export default {
   name: "App",
@@ -53,6 +56,14 @@ export default {
   },
   beforeMount: function() {
     this.getUserCredentials();
+    const dni = getLSItemData("userId");
+    axios
+      .get(`https://vuebank-api.herokuapp.com/accounts/${dni}`)
+      .then((res) => {
+        const datos = res.data;
+        if (!datos.length) return (this.usuarioSinCuentas = true);
+        this.$store.dispatch("setCuentas", datos);
+      });
   },
 };
 </script>

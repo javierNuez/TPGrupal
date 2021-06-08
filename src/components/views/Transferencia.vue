@@ -1,41 +1,44 @@
 <template>
-  <div class="container-transferencia">
-    <h1>Transferencia</h1>
-    <div class="container-form">
-      <div>
-        <label for="destinatario">Destinatario:</label>
-        <input
-          class="form-control"
-          id="destinatario"
-          v-model="destinatario"
-          type="text"
-          name="destinatario"
-        />
-      </div>
-      <div>
-        <label for="tipoCuenta">Tipo de cuenta:</label>
-        <b-form-select v-model="selected" :options="options" name="tipoCuenta">
-        </b-form-select>
-        <!-- <select id="cuenta" v-model="cuenta" name="cuenta">
-          <option>Cuenta Corriente</option>
-          <option>Cuenta de Ahorro</option>
-        </select> -->
-      </div>
-      <div class="input-group-prepend">
-        <span class="input-group-text" id="inputGroup-sizing-default">$</span>
-        <input
-          id="mont"
-          class="form-control"
-          v-model="mont"
-          type="number"
-          name="mont"
-          min="0"
-        />
-      </div>
+  <div>
+    <Grilla :columns="columns" :data="transferencias" />
+    <div class="container-transferencia">
+      <h1>Transferencia</h1>
+      <div class="container-form">
+        <div>
+          <label for="destinatario">Destinatario:</label>
+          <input
+            class="form-control"
+            id="destinatario"
+            v-model="destinatario"
+            type="text"
+            name="destinatario"
+          />
+        </div>
+        <div>
+          <label for="tipoCuenta">Tipo de cuenta:</label>
+          <b-form-select
+            v-model="selected"
+            :options="options"
+            name="tipoCuenta"
+          >
+          </b-form-select>
+        </div>
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="inputGroup-sizing-default">$</span>
+          <input
+            id="mont"
+            class="form-control"
+            v-model="mont"
+            type="number"
+            name="mont"
+            min="0"
+          />
+        </div>
 
-      <button class="btn btn-primary" @click="realizarTransferencia">
-        Realizar transferencia
-      </button>
+        <button class="btn btn-primary" @click="realizarTransferencia">
+          Realizar transferencia
+        </button>
+      </div>
     </div>
   </div>
 </template>
@@ -44,16 +47,28 @@
 import { getLSItemData } from "../../utils/localStorageHelper";
 import swal from "sweetalert";
 import axios from "axios";
+import Grilla from "../commons/Grilla";
 
 export default {
+  components: {
+    Grilla,
+  },
   data: function() {
     return {
       destinatario: "",
       mont: 0,
       selected: "caja ahorro en pesos",
       options: ["caja ahorro en pesos", "caja ahorro en dolares"],
+      columns: [
+        { label: "Descripcion", key: "descripcion" },
+        { label: "Monto", key: "monto" },
+        { label: "Fecha", key: "fecha" },
+        { label: "Origen", key: "origen" },
+      ],
+      transferencias: [],
     };
   },
+  components: {},
   methods: {
     realizarTransferencia: function() {
       const monto = parseInt(document.getElementById("mont").value);
@@ -86,6 +101,14 @@ export default {
         }
       });
     },
+    getDatosDeTransferencias: function() {
+      const datos = this.$store.getters["getTranferencias"];
+      console.log("DATOS ", datos);
+      return datos;
+    },
+  },
+  mounted() {
+    this.transferencias = this.getDatosDeTransferencias();
   },
 };
 </script>

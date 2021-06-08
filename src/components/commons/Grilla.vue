@@ -20,7 +20,11 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="(entry, i) in filteredData" :key="i">
+        <tr
+          v-for="(entry, i) in filteredData"
+          :key="i"
+          :class="getColor(entry)"
+        >
           <td v-for="(header, u) in columns" :key="u">
             {{ entry[header.key] }}
           </td>
@@ -87,6 +91,13 @@ export default {
       this.sortKey = key;
       this.sortOrders[key] = this.sortOrders[key] * -1;
     },
+    getColor: function(entry) {
+      if (entry.tipoMovimiento) {
+        return entry.tipoMovimiento === "entrada"
+          ? "style-entrada"
+          : "style-salida";
+      }
+    },
   },
 };
 </script>
@@ -97,6 +108,14 @@ table {
   border-radius: 3px;
   background-color: #fff;
   width: 100%;
+}
+
+.style-entrada {
+  color: #088e19;
+}
+
+.style-salida {
+  color: rgb(174, 6, 6);
 }
 
 th {

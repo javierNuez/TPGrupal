@@ -2,7 +2,7 @@
   <div class="prestamoslayout">
     <Grilla
       titulo="Historial de prestamos"
-      :data="$store.state.prestamos"
+      :data="$store.getters.getPrestamos"
       :columns="grillaTitulos"
     ></Grilla>
   </div>
@@ -33,7 +33,6 @@ export default {
       .then((res) => {
         const datos = res.data;
         if (!datos.length) return (this.usuarioSinCuentas = true);
-        console.log("DATOS PRESTAMOS: ", datos);
         this.$store.dispatch("setPrestamos", datos);
       });
   },

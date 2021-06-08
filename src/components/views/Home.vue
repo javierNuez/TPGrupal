@@ -26,10 +26,8 @@
 </template>
 
 <script>
-import axios from "axios";
 import Grilla from "../commons/Grilla";
 import Simulador from "../commons/Simulador";
-import { getLSItemData } from "../../utils/localStorageHelper";
 
 export default {
   props: {},
@@ -45,17 +43,6 @@ export default {
       //cuentas: this.$store.getters.getCuentas,
       usuarioSinCuentas: false,
     };
-  },
-  methods: {},
-  beforeCreate() {
-    const dni = getLSItemData("userId");
-    axios
-      .get(`https://vuebank-api.herokuapp.com/accounts/${dni}`)
-      .then((res) => {
-        const datos = res.data;
-        if (!datos.length) return (this.usuarioSinCuentas = true);
-        this.$store.dispatch("setCuentas", datos);
-      });
   },
   components: {
     Grilla,

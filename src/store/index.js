@@ -31,5 +31,20 @@ export default new Vuex.Store({
     getPrestamos: (state) => {
       return state.prestamos;
     },
+    getTranferencias: ({ cuentas }) => {
+      const arrayTranferencias = [];
+      cuentas.forEach((cuenta) => {
+        cuenta.movimientos.forEach((mov) => {
+          if (mov.descripcion !== "Prestamo") {
+            const movConMoneda = {
+              ...mov,
+              monto: `${cuenta.moneda === "pesos" ? "$" : "u$s"}${mov.monto}`,
+            };
+            arrayTranferencias.push(movConMoneda);
+          }
+        });
+      });
+      return arrayTranferencias;
+    },
   },
 });

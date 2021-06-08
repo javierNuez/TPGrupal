@@ -9,6 +9,7 @@
         </div>
         <input
           id="n1"
+          v-model="monto"
           type="number"
           class="form-control"
           aria-label="Default"
@@ -25,6 +26,7 @@
         </div>
         <input
           id="n2"
+          v-model="cuotas"
           type="number"
           class="form-control"
           aria-label="Default"
@@ -47,6 +49,7 @@
       >
         Generar
       </button>
+      {{ calcular }}
     </div>
   </div>
 </template>
@@ -60,6 +63,8 @@ export default {
   data: function() {
     return {
       tieneValores: false,
+      monto: 0,
+      cuotas: 0,
     };
   },
   methods: {
@@ -89,6 +94,11 @@ export default {
           });
         }
       });
+    },
+  },
+  computed: {
+    calcular: function() {
+      return this.monto + this.cuotas;
     },
   },
   mounted() {
