@@ -68,7 +68,6 @@ export default {
       transferencias: [],
     };
   },
-  components: {},
   methods: {
     realizarTransferencia: function() {
       const monto = parseInt(document.getElementById("mont").value);
@@ -79,7 +78,8 @@ export default {
         icon: "warning",
         buttons: true,
         dangerMode: true,
-      }).then(async () => {
+      }).then(async (res) => {
+        if (!res) return;
         const dni = getLSItemData("userId");
         const body = {
           monto,
@@ -90,11 +90,11 @@ export default {
           }`,
           dni,
         };
-        const res = await axios.put(
+        const result = await axios.put(
           "https://vuebank-api.herokuapp.com/accounts/transfer",
           body
         );
-        if (res.data) {
+        if (result.data) {
           swal("La transferencia ha sido creada correctamente!", {
             icon: "success",
           });

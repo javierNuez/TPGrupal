@@ -77,18 +77,19 @@ export default {
         icon: "warning",
         buttons: true,
         dangerMode: true,
-      }).then(async () => {
+      }).then(async (res) => {
+        if (!res) return;
         const dni = getLSItemData("userId");
         const body = {
           montoOtorgado: monto,
           cantCuotas: cuotas,
           dni,
         };
-        const res = await axios.post(
+        const result = await axios.post(
           "https://vuebank-api.herokuapp.com/prestamos",
           body
         );
-        if (res.data) {
+        if (result.data) {
           swal("El prestamo ha sido creado correctamente!", {
             icon: "success",
           });
