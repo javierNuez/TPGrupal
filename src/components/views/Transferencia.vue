@@ -28,14 +28,18 @@
           <input
             id="mont"
             class="form-control"
-            v-model="mont"
+            v-model="monto"
             type="number"
             name="mont"
             min="0"
           />
         </div>
 
-        <button class="btn btn-primary" @click="realizarTransferencia">
+        <button
+          class="btn btn-primary"
+          @click="realizarTransferencia"
+          :disabled="!tieneValores"
+        >
           Realizar transferencia
         </button>
       </div>
@@ -56,7 +60,7 @@ export default {
   data: function() {
     return {
       destinatario: "",
-      mont: 0,
+      monto: 0,
       selected: "caja ahorro en pesos",
       options: ["caja ahorro en pesos", "caja ahorro en dolares"],
       columns: [
@@ -68,13 +72,17 @@ export default {
       transferencias: [],
     };
   },
+  computed: {
+    tieneValores: function() {
+      if (this.destinatario.length > 0 && this.monto > 0) return true;
+      return false;
+    },
+  },
   methods: {
     realizarTransferencia: function() {
-      const monto = parseInt(document.getElementById("mont").value);
-      const cbu = document.getElementById("destinatario").value;
       swal({
         title: "¿Esta seguro que desea generar esta transferencia?",
-        text: `El monto es: $${monto} y se enviara a ${cbu}`,
+        text: `El monto es: $${this.monto} y se enviara a ${this.destinatario}`,
         icon: "warning",
         buttons: true,
         dangerMode: true,
@@ -82,8 +90,8 @@ export default {
         if (!res) return;
         const dni = getLSItemData("userId");
         const body = {
-          monto,
-          nroCuentaDestino: cbu,
+          monto: parseInt(this.monto),
+          nroCuentaDestino: this.destinatario,
           descripcion: "una transferencia",
           nroCuenta: `${dni}-${
             this.selected === "caja ahorro en pesos" ? "001" : "002"
@@ -103,7 +111,6 @@ export default {
     },
     getDatosDeTransferencias: function() {
       const datos = this.$store.getters["getTranferencias"];
-      console.log("DATOS ", datos);
       return datos;
     },
   },

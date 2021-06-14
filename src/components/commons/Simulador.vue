@@ -31,25 +31,26 @@
           class="form-control"
           aria-label="Default"
           aria-describedby="inputGroup-sizing-default"
-          placeholder=".."
+          placeholder="Cantidad de cuotas"
         />
       </div>
 
       <h4>Interés anual: 10%</h4>
       <h4>Capital con intereses:</h4>
-      <h3 id="monto">$<a id="salida">0</a></h3>
+      <h3 id="monto">
+        $<a id="salida">{{ montoTotal }}</a>
+      </h3>
       <h4>Cuota promedio:</h4>
-      <h3 id="cuotaFinal">$<a id="cuota">0</a></h3>
-
-      <button id="calcular" class="btn btn-light">Calcular</button>
+      <h3 id="cuotaFinal">
+        $<a id="cuota">{{ valorCuota }}</a>
+      </h3>
       <button
         @click="preCrearPrestamo"
         class="btn btn-primary customButton"
-        v-show="tieneValores"
+        :disabled="!tieneValor"
       >
-        Generar
+        Generar prestamo
       </button>
-      {{ calcular }}
     </div>
   </div>
 </template>
@@ -59,12 +60,15 @@ import { getLSItemData } from "../../utils/localStorageHelper";
 import swal from "sweetalert";
 import axios from "axios";
 
+const INTERES = 0.1;
+
 export default {
   data: function() {
     return {
-      tieneValores: false,
       monto: 0,
       cuotas: 0,
+      valorCuota: 0,
+      montoTotal: 0,
     };
   },
   methods: {
@@ -98,25 +102,24 @@ export default {
     },
   },
   computed: {
-    calcular: function() {
-      return this.monto + this.cuotas;
+    calcularTotal() {
+      if (!this.monto || !this.cuotas) return;
+      const valorFinal = parseInt(this.monto);
+      const montoTotal = valorFinal * INTERES + valorFinal;
+      const valorCuota = this.cuotas > 0 ? montoTotal / this.cuotas : 0;
+      return { montoTotal, valorCuota };
+    },
+    tieneValor() {
+      if (this.monto > 0 && this.cuotas > 0) return true;
+      return false;
     },
   },
-  mounted() {
-    document.querySelector("#calcular").addEventListener("click", () => {
-      const n1 = parseInt(document.querySelector("#n1").value);
-      const n2 = parseInt(document.querySelector("#n2").value);
-      if (!n1 || !n2) return;
-
-      var cuotaPura = n1 / n2;
-      var interes = (cuotaPura * 0.83 * n2) / 100;
-      var cuotaConInteres = cuotaPura + interes;
-      var capital = cuotaConInteres * n2;
-
-      document.querySelector("#salida").innerHTML = parseInt(capital);
-      document.querySelector("#cuota").innerHTML = parseInt(cuotaConInteres);
-      this.tieneValores = true;
-    });
+  watch: {
+    calcularTotal: function(newVal) {
+      if (!newVal) return;
+      this.montoTotal = newVal.montoTotal;
+      this.valorCuota = newVal.valorCuota;
+    },
   },
 };
 </script>
