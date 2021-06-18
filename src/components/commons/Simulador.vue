@@ -73,11 +73,11 @@ export default {
   },
   methods: {
     preCrearPrestamo: function() {
-      const monto = parseInt(document.getElementById("n1").value);
-      const cuotas = parseInt(document.getElementById("n2").value);
+      // const monto = parseInt(document.getElementById("n1").value);
+      // const cuotas = parseInt(document.getElementById("n2").value);
       swal({
         title: "¿Esta seguro que desea generar el prestamo?",
-        text: `El monto es: $${monto} en ${cuotas} cuotas`,
+        text: `El monto es: $${this.monto} en ${this.cuotas} cuotas`,
         icon: "warning",
         buttons: true,
         dangerMode: true,
@@ -85,21 +85,33 @@ export default {
         if (!res) return;
         const dni = getLSItemData("userId");
         const body = {
-          montoOtorgado: monto,
-          cantCuotas: cuotas,
+          montoOtorgado: this.monto,
+          cantCuotas: this.cuotas,
           dni,
-        };
+        }
         const result = await axios.post(
           "https://vuebank-api.herokuapp.com/prestamos",
           body
         );
+        
         if (result.data) {
+          this.$store.dispatch("getCuentas")
           swal("El prestamo ha sido creado correctamente!", {
             icon: "success",
           });
+          this.setearValores()
+        } 
+        if (result == null){
+          swal("Prestamo cancelado correctamente!");
         }
       });
     },
+    setearValores(){
+          this.monto=0
+          this.cuotas=0
+          this.montoTotal=0
+          this.valorCuota=0
+  }
   },
   computed: {
     calcularTotal() {

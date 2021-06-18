@@ -18,11 +18,14 @@
 import { saveLSItemData } from "../../utils/localStorageHelper";
 export default {
   name: "Login",
-  data: function() {
+  data: function () {
     return {};
   },
+  beforeCreate() {
+    this.$store.dispatch("setResetState");
+  },
   methods: {
-    onSubmit: function() {
+    onSubmit: function () {
       const inputValue = document.getElementById("input-dni").value;
       saveLSItemData("userId", inputValue);
       this.$router.push({ path: "/home" });

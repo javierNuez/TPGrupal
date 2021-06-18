@@ -48,6 +48,9 @@ export default {
     Grilla,
     Simulador,
   },
+  beforeCreate(){
+    this.$store.dispatch("getCuentas")
+    }
 };
 </script>
 
