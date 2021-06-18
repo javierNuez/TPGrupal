@@ -7,6 +7,7 @@ export default new Vuex.Store({
   state: {
     cuentas: [],
     prestamos: [],
+    pagos:[],
   },
   actions: {
     setCuentas({ commit }, payload) {
@@ -14,6 +15,9 @@ export default new Vuex.Store({
     },
     setPrestamos({ commit }, payload) {
       commit("setPrestamos", payload);
+    },
+    setPagos({ commit }, payload) {
+      commit("setPagos", payload);
     },
   },
   mutations: {
@@ -23,8 +27,14 @@ export default new Vuex.Store({
     setPrestamos(state, payload) {
       state.prestamos = payload;
     },
+    setPagos(state, payload) {
+      state.pagos = payload;
+    },
   },
   getters: {
+    getPagos: (state) => {
+      return state.pagos;
+    },
     getCuentas: (state) => {
       return state.cuentas;
     },

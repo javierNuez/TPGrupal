@@ -7,6 +7,7 @@ import Pagos from "./components/views/Pagos.vue";
 import Tarjeta from "./components/views/Tarjeta.vue";
 import Login from "./components/views/Login.vue";
 import PageNotFound from "./components/views/PageNotFound.vue";
+
 import { getLSItemData } from "./utils/localStorageHelper";
 import { BootstrapVue, IconsPlugin } from "bootstrap-vue";
 import store from "./store";
@@ -26,6 +27,7 @@ const routes = [
   { name: "Login", path: "/login", component: Login },
   { name: "Logout", path: "/logout", redirect: "/login" },
   { path: "*", component: PageNotFound },
+  
 ];
 
 import Router from "vue-router";
