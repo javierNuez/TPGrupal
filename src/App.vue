@@ -13,6 +13,7 @@
             <router-link to="/pagos" class="menu"> Pagos </router-link>
             <router-link to="/prestamo" class="menu"> Prestamo </router-link>
             <router-link to="/tarjeta" class="menu"> Tarjeta </router-link>
+            
             <b-button
               style="color:white"
               variant="outline-primary"
