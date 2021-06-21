@@ -22,16 +22,14 @@
     <b-col cols="12" xl="4">
       <Simulador />
     </b-col>
-    <b-col cols="12" xl="4">
-      <GraficoPagos />  
-    </b-col>
+    
   </div>
 </template>
 
 <script>
 import Grilla from "../commons/Grilla";
 import Simulador from "../commons/Simulador";
-import GraficoPagos from "../commons/GraficoPagos";
+
 export default {
   props: {},
   data: function() {
@@ -50,7 +48,7 @@ export default {
   components: {
     Grilla,
     Simulador,
-    GraficoPagos,
+    
   },
 };
 </script>

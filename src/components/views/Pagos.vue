@@ -27,7 +27,7 @@ export default {
       grillaTitulos: [
         { label: "Nombre", key: "name" },
         { label: "Importe", key: "monto" },
-        { label: "Monto", key: "vencimiento" },
+        { label: "Vencimiento", key: "vencimiento" },
         
       ],
       usuarioSinCuentas: false,
