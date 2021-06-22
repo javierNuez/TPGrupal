@@ -1,0 +1,51 @@
+<template>
+    <div id="grafico">
+        <canvas id="myChart"></canvas>
+    </div>
+    
+</template>
+<style>
+#grafico{
+    padding: 20px;
+    width: 400px;
+    height: 400px;
+}
+#myChart{
+    width: 400px;
+    height: 400px;
+}
+</style>
+<script>
+
+import Chart from "../../assets/chart.js"
+export default {
+    mounted(){
+        var ctx= document.getElementById("myChart").getContext("2d");
+        var myChart= new Chart(ctx,{
+            type:"pie",
+            data:{
+                labels:['col1','col2','col3'],
+                datasets:[{
+                        label:'Num datos',
+                        data:[10,9,15],
+                        backgroundColor:[
+                            'rgb(66, 134, 244,0.5)',
+                            'rgb(74, 135, 72,0.5)',
+                            'rgb(229, 89, 50,0.5)'
+                        ]
+                }]
+            }/*,
+            options:{
+                scales:{
+                    yAxes:[{
+                            ticks:{
+                                beginAtZero:true
+                            }
+                    }]
+                }
+            }*/
+        });
+        document.setElementById(myChart);
+    }
+}
+</script>
