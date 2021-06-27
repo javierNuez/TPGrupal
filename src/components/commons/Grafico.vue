@@ -19,6 +19,7 @@ export default {
     data: Array,
   },
   mounted() {
+    console.log("LOG", { label: this.labels, data: this.data });
     var ctx = document.getElementById("myChart").getContext("2d");
     var myChart = new Chart(ctx, {
       type: "pie",

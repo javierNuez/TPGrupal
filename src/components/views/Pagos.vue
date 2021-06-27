@@ -8,12 +8,12 @@
       ></Grilla>
     </div>
     <div class="row">
-      <div class="col-2">
+      <div class="col-6">
         <FormPagos />
       </div>
-      <!-- <div id="graf" class="col-4">
-        <Grafico></Grafico>
-      </div> -->
+      <div id="graf" class="col-6">
+        <Grafico :labels="graphLabels" :data="graphData"></Grafico>
+      </div>
     </div>
   </div>
   <!--<div v-if="usuarioSinCuentas">Usted no tiene cuentas</div>-->
@@ -22,7 +22,7 @@
 <script>
 import FormPagos from "../commons/FormPagos";
 import Grilla from "../commons/Grilla";
-//import Grafico from "../../components/commons/Grafico.vue";
+import Grafico from "../../components/commons/Grafico.vue";
 export default {
   data: function() {
     return {
@@ -40,11 +40,22 @@ export default {
   beforeCreate() {
     this.$store.dispatch("getPagos");
   },
-  computed: {},
+  computed: {
+    armarDatosGrafico: function() {
+      const datos = this.$store.getters.getGraphData;
+      return datos;
+    },
+  },
+  watch: {
+    armarDatosGrafico: function(datos) {
+      this.graphData = datos.data;
+      this.graphLabels = datos.labels;
+    },
+  },
   components: {
     Grilla,
     FormPagos,
-    //Grafico,
+    Grafico,
   },
 };
 </script>
@@ -52,8 +63,5 @@ export default {
 <style>
 .pagoslayout {
   width: 100%;
-}
-#graf {
-  padding-left: 500px;
 }
 </style>

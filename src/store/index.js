@@ -98,6 +98,30 @@ export default new Vuex.Store({
     getServiciosPorPagar: (state) => {
       return state.pagos.filter((pago) => !pago.pagada);
     },
+    getGraphData: (state) => {
+      const serviciosPorTipo = {};
+      const servicios = state.pagos.filter((pago) => pago.pagada);
+
+      for (const servicio of servicios) {
+        if (Array.isArray(serviciosPorTipo[servicio.name])) {
+          serviciosPorTipo[servicio.name].push(servicio);
+        } else {
+          serviciosPorTipo[servicio.name] = [servicio];
+        }
+      }
+      const labels = Object.keys(serviciosPorTipo);
+      const valores = [];
+
+      labels.map((label) => {
+        let total = 0;
+        serviciosPorTipo[label].map((item) => (total += item.monto));
+        valores.push(total);
+      });
+      return {
+        labels,
+        data: valores,
+      };
+    },
     getCuentas: (state) => {
       return state.cuentas;
     },
