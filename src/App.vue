@@ -30,9 +30,7 @@
 </template>
 
 <script>
-import Header from "./components/commons/Header";
-import axios from "axios";
-import { getLSItemData } from "./utils/localStorageHelper";
+import Header from "./components/commons/Header"
 
 export default {
   name: "App",
@@ -45,25 +43,17 @@ export default {
     };
   },
   methods: {
-    getUserCredentials: () => {
-      const userId = localStorage.getItem("userId");
-      if (!userId) return console.log("USER ID NOT FOUND ");
-    },
+    // getUserCredentials: () => {
+    //   const userId = localStorage.getItem("userId");
+    //   if (!userId) return console.log("USER ID NOT FOUND ");
+    // },
     onLogout: function() {
       localStorage.clear();
       this.$router.push({ path: "/logout" });
     },
   },
   beforeMount: function() {
-    this.getUserCredentials();
-    const dni = getLSItemData("userId");
-    axios
-      .get(`https://vuebank-api.herokuapp.com/accounts/${dni}`)
-      .then((res) => {
-        const datos = res.data;
-        if (!datos.length) return (this.usuarioSinCuentas = true);
-        this.$store.dispatch("setCuentas", datos);
-      });
+    this.$store.dispatch("getCuentas")
   },
 };
 </script>

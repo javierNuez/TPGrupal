@@ -50,6 +50,9 @@ export default {
     Simulador,
     
   },
+  beforeCreate(){
+    this.$store.dispatch("getCuentas")
+    }
 };
 </script>
 

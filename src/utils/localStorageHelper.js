@@ -6,4 +6,5 @@
 
 export const getLSItemData = (key) => JSON.parse(localStorage.getItem(key));
 export const saveLSItemData = (key, data) =>
+  
   JSON.stringify(localStorage.setItem(key, data));
