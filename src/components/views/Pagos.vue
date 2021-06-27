@@ -1,10 +1,5 @@
 <template>
- <div class="row">
-    <b-col cols="12" xl="8">
-      <!-- <div v-if="$store.getters.getPagos.length === 0 && !usuarioSinCuentas">
-        Cargando datos... -->
-<div class="row">
-
+ <div>
         <div class="pagoslayout">
         <Grilla
           titulo="Historial de Pagos"
@@ -12,26 +7,17 @@
           :columns="grillaTitulos"
         ></Grilla>
         </div>
-        <div>
+        <div class="row">
+        <div class="col-2">
           <FormPagos/>
         </div>
-        <div>
-          <Grafico></Grafico>
+          <div id="graf" class="col-4">
+            <Grafico></Grafico>
+          </div>
         </div>
       </div>
-      <div v-if="usuarioSinCuentas">Usted no tiene cuentas</div>
-      <div>
-      <Grilla
-        titulo="Historial de Pagos"
-        :data="$store.getters.getPagos"
-        :columns="grillaTitulos"
-      ></Grilla>
-    </div>
-    </b-col>
-    <div>
-      <FormPagos />
-    </div>
-  </div>
+      <!--<div v-if="usuarioSinCuentas">Usted no tiene cuentas</div>-->
+      
 </template>
 
 <script>
@@ -73,5 +59,8 @@ export default {
 <style>
 .pagoslayout {
   width: 100%;
+}
+#graf{
+  padding-left: 500px;
 }
 </style>
