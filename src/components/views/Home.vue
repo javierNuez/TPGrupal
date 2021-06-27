@@ -22,6 +22,7 @@
     <b-col cols="12" xl="4">
       <Simulador />
     </b-col>
+    
   </div>
 </template>
 
@@ -47,6 +48,7 @@ export default {
   components: {
     Grilla,
     Simulador,
+    
   },
   beforeCreate(){
     this.$store.dispatch("getCuentas")
