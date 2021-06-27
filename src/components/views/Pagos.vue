@@ -1,8 +1,8 @@
 <template>
  <div class="row">
     <b-col cols="12" xl="8">
-      <div v-if="$store.getters.getPagos.length === 0 && !usuarioSinCuentas">
-        Cargando datos...
+      <!-- <div v-if="$store.getters.getPagos.length === 0 && !usuarioSinCuentas">
+        Cargando datos... -->
 <div class="row">
 
         <div class="pagoslayout">
