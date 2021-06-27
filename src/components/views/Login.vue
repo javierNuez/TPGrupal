@@ -1,5 +1,6 @@
 <template>
   <div class="container-login">
+    <h1></h1>
     <form @submit.prevent="onSubmit" class="formContainer">
       <img src="../../assets/LogoBanco.jpg" width="272" />
       <h3>Iniciar sesión</h3>
