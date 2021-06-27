@@ -27,15 +27,7 @@ export default {
   },
   methods: {},
   beforeCreate() {
-    this.$store.dispatch("getPrestamos")
-    // const dni = getLSItemData("userId");
-    // axios
-    //   .get(`https://vuebank-api.herokuapp.com/prestamos/${dni}`)
-    //   .then((res) => {
-    //     const datos = res.data;
-    //     if (!datos.length) return (this.usuarioSinCuentas = true);
-    //     this.$store.dispatch("setPrestamos", datos);
-    //   });
+    this.$store.dispatch("getPrestamos");
   },
   components: {
     Grilla,

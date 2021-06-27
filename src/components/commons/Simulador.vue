@@ -82,36 +82,36 @@ export default {
         buttons: true,
         dangerMode: true,
       }).then(async (res) => {
-        if (res) {
+        if (!res) return;
         const dni = getLSItemData("userId");
         const body = {
           montoOtorgado: this.monto,
           cantCuotas: this.cuotas,
           dni,
-        }
+        };
         const result = await axios.post(
           "https://vuebank-api.herokuapp.com/prestamos",
           body
         );
+
         if (result.data) {
-          this.$store.dispatch("getCuentas")
+          this.$store.dispatch("getCuentas");
           swal("El prestamo ha sido creado correctamente!", {
             icon: "success",
           });
-          this.setearValores()
-      }
-        } else {
+          this.setearValores();
+        }
+        if (result == null) {
           swal("Prestamo cancelado correctamente!");
-          this.setearValores()
         }
       });
     },
-    setearValores(){
-          this.monto=0
-          this.cuotas=0
-          this.montoTotal=0
-          this.valorCuota=0
-  }
+    setearValores() {
+      this.monto = 0;
+      this.cuotas = 0;
+      this.montoTotal = 0;
+      this.valorCuota = 0;
+    },
   },
   computed: {
     calcularTotal() {

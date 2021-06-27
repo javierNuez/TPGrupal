@@ -1,56 +1,59 @@
 <template>
-   <div id="formulario" class="container">
-      <div class="row">
-        <div class="col align-self-start">
-          <div class="card-header"><h3>Agregar nuevo pago</h3></div>
-          <label for="Servicio">Tipo de gasto</label>
-          <b-form-select
-            v-model="selected"
-            :options="options"
-            class="form"
-          ></b-form-select>
-          <label for="Monto">Monto</label>
-          <div>
-            <div class="input-group-prepend">
-              <span class="input-group-text" id="inputGroup-sizing-default"
-                >$</span
-              >
-              <b-form-input
-                class="input-group"
-                type="number"
-                v-model="importe"
-              ></b-form-input>
-            </div>
+  <div id="formulario" class="container">
+    <div class="row">
+      <div class="col align-self-start">
+        <div class="card-header"><h3>Agregar nuevo pago</h3></div>
+        <label for="Servicio">Tipo de gasto</label>
+        <b-form-select
+          v-model="selected"
+          :options="options"
+          class="form"
+          @change="handleChange"
+        ></b-form-select>
+        <label for="Monto">Monto</label>
+        <div>
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="inputGroup-sizing-default"
+              >$</span
+            >
+            <b-form-input
+              class="input-group"
+              type="number"
+              v-model="importe"
+              :value="importe"
+              disabled
+            ></b-form-input>
           </div>
-          <b-button id="pagar" class="btn btn-light" value="Pagar" type="submit"
-            >PAGAR</b-button
-          >
         </div>
-      </div>
-    </div> 
-</template>
-<script>
 
+        <button @click="handleClick" class="btn btn-primary customButton">
+          Pagar
+        </button>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
 export default {
   data() {
     return {
       selected: null,
-      importe: "",
-      options: [
-        { value: null, text: "Seleccionar el servio a pagar" },
-        { value: "a", text: "Electricidad" },
-        { value: "b", text: "Servicio de cable/internet" },
-        { value: "c", text: "ABL" },
-        { value: "d", text: "Seguro Automotor" },
-      ],
-      
+      importe: 0,
+      options: [{ value: null, text: "Seleccionar el servicio a pagar" }],
     };
   },
   beforeCreate() {
     this.gridData = [];
   },
-  components: {
-  
+  computed: {
+    armarDatosSelect: function() {
+      const datosSelect = [];
+      this.$store.getters.getServiciosPorPagar.map((item) => {
+        datosSelect.push({ text: item.name, value: item.idServicio });
+      });
+      return datosSelect;
+    },
   },
   methods: {
     getGridData: function() {
@@ -58,6 +61,25 @@ export default {
     },
     getGridColumns: function() {
       return this.gridColumns;
+    },
+    handleChange: function() {
+      const [servicio] = this.$store.getters.getServiciosPorPagar.filter(
+        (servicio) => this.selected === servicio.idServicio
+      );
+      if (servicio) {
+        this.importe = servicio.monto;
+      } else {
+        this.importe = 0;
+      }
+    },
+    handleClick: function() {
+      if (this.selected) this.$store.dispatch("realizarPago", this.selected);
+    },
+  },
+  watch: {
+    armarDatosSelect: function(datosSelect) {
+      datosSelect.splice(0, 0, this.options[0]);
+      this.options = datosSelect;
     },
   },
 };
@@ -84,5 +106,9 @@ label {
 }
 #pagar {
   margin: 10px;
+}
+
+.customButton {
+  margin: 1rem;
 }
 </style>
