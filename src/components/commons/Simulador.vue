@@ -82,7 +82,7 @@ export default {
         buttons: true,
         dangerMode: true,
       }).then(async (res) => {
-        if (!res) return;
+        if (res) {
         const dni = getLSItemData("userId");
         const body = {
           montoOtorgado: this.monto,
@@ -93,16 +93,16 @@ export default {
           "https://vuebank-api.herokuapp.com/prestamos",
           body
         );
-        
         if (result.data) {
           this.$store.dispatch("getCuentas")
           swal("El prestamo ha sido creado correctamente!", {
             icon: "success",
           });
           this.setearValores()
-        } 
-        if (result == null){
+      }
+        } else {
           swal("Prestamo cancelado correctamente!");
+          this.setearValores()
         }
       });
     },
