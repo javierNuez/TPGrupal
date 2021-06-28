@@ -31,6 +31,7 @@ export default {
         { label: "Importe", key: "monto" },
         { label: "Vencimiento", key: "vencimiento" },
       ],
+      
       usuarioSinCuentas: false,
       graphData: [],
       graphLabels: [],
@@ -40,9 +41,13 @@ export default {
   beforeCreate() {
     this.$store.dispatch("getPagos");
   },
+  
   computed: {
+    
     armarDatosGrafico: function() {
+      
       const datos = this.$store.getters.getGraphData;
+      
       return datos;
     },
   },
@@ -50,6 +55,7 @@ export default {
     armarDatosGrafico: function(datos) {
       this.graphData = datos.data;
       this.graphLabels = datos.labels;
+      
     },
   },
   components: {
