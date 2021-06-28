@@ -87,7 +87,7 @@ export default {
         buttons: true,
         dangerMode: true,
       }).then(async (res) => {
-        if (!res) return;
+        if (res){ 
         const dni = getLSItemData("userId");
         const body = {
           monto: parseInt(this.monto),
@@ -106,8 +106,16 @@ export default {
           swal("La transferencia ha sido creada correctamente!", {
             icon: "success",
           });
+          this.setearValores();
+        }
+        }else {
+         swal("Transferencia cancelada correctamente!");
+         this.setearValores();
         }
       });
+    },
+    setearValores() {
+      this.monto = 0;
     },
     getDatosDeTransferencias: function() {
       const datos = this.$store.getters["getTranferencias"];
