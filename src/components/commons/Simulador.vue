@@ -82,7 +82,7 @@ export default {
         buttons: true,
         dangerMode: true,
       }).then(async (res) => {
-        if (!res) return;
+        if (res) {
         const dni = getLSItemData("userId");
         const body = {
           montoOtorgado: this.monto,
@@ -101,8 +101,9 @@ export default {
           });
           this.setearValores();
         }
-        if (result == null) {
-          swal("Prestamo cancelado correctamente!");
+        }else {
+         swal("Prestamo cancelado correctamente!");
+         this.setearValores();
         }
       });
     },
